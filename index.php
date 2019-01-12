@@ -134,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 </nav>
 <div class="container h-100">
-    <h2 class="row h-100 justify-content-center align-items-center">Marcações para dia <?php echo $_SESSION["date"]; ?></h2>
+    <h2 class="row h-100 justify-content-center align-items-center">Marcações para <?php echo $_SESSION["date"]; ?></h2>
 
     <div class="dateContainer row h-100 justify-content-center align-items-center">
         <form class='form-inline my-2 my-lg-0' id='Search' method = 'post' >

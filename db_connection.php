@@ -81,9 +81,10 @@ function InsertNewVehicle($marca, $modelo, $matricula, $idCliente) {
     exit();
 }
 
-function InsertNewEmployee($nome, $contacto, $email, $morada, $nif) {
+function InsertNewEmployee($nome, $espec) {
     $conn = OpenCon();
-    $conn->query("INSERT INTO Cliente values (0, '" . $nome . "', '" . $contacto . "', '" . $email . "', '" . $morada . "', '" . $nif . "');");
+//    $conn->query("INSERT INTO Funcionario values (0, 'Robertom', 2)");
+    $conn->query("INSERT INTO Funcionario values (0, '" . $nome . "', " . $espec . ")");
     CloseCon($conn);
     header(path());
     exit();
