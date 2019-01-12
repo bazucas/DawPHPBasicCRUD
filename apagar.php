@@ -1,7 +1,15 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Luis
- * Date: 11/01/2019
- * Time: 23:57
- */
+session_start();
+if(empty($_SESSION["authenticated"]) || $_SESSION["authenticated"] != 'true') {
+    header('Location: index.php');
+}
+
+if (isset($_GET['id'])) {
+    include 'db_connection.php';
+
+    DeleteService($_GET['id']);
+
+    header("Location: http://localhost:63342/htdocs/index.php");
+    exit();
+}
+?>

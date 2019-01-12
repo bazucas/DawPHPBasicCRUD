@@ -58,9 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         i {
             padding: 0px 10px;
         }
-        .changeDate {
-            margin: 0px 10px;
-        }
         .dateContainer {
             margin: 40px 0px;
         }
@@ -79,6 +76,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             color: white;
             height: 25px;
         }
+        #delete {
+            color: red;
+        }
+        #delete:hover {
+            cursor: pointer;
+            color: #660300;
+        }
+
     </style>
 </head>
 <body>
@@ -172,8 +177,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     echo "<td>" . $row["funcNome"] . "</td>";
                     echo "<td>";
                     echo "<div class='row justify-content-center align-items-center'>";
-                    echo "<a href='editar.php'><i class='fas fa-user-edit'></i></a>";
-                    echo "<a href='apagar.php'><i class='fas fa-user-times'></i></a>";
+                    echo "<a href='editar.php?" . $row["idServico"] . "'><i class='fas fa-user-edit'></i></a>";
+                    echo "<i id='delete' class='fas fa-user-times' onclick='ConfirmDelete(" . $row["idServico"] . ")'></i>";
                     echo "</div>";
                     echo "</td>";
                     echo "</tr>";
@@ -187,7 +192,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </table>
     </div>
 </div>
-
+<script type="text/javascript">
+    function ConfirmDelete(id)
+    {
+        if (confirm("Eliminar o serviço?"))
+            location.href='http://localhost:63342/htdocs/apagar.php?id=' + id;
+    }
+</script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>

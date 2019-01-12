@@ -34,7 +34,7 @@ function GetMarcacoesQuery($conn, $data) {
     $dataInicio = " " . $data . " 09:00:00";
     $dataFim = " " . $data . " 18:00:00";
 
-    $query = "select s.dataServico, c.nome as clienteNome, c.contacto, v.marca, v.modelo, v.matricula, e.tipo, f.nome as funcNome
+    $query = "select s.id_servico as idServico, s.dataServico, c.nome as clienteNome, c.contacto, v.marca, v.modelo, v.matricula, e.tipo, f.nome as funcNome
                 from servico s
                 left join cliente c on s.id_cliente = c.id_cliente
                 left join viatura v on s.id_viatura = v.id_viatura
@@ -62,6 +62,14 @@ function IsUserAuthorized($conn, $user, $pass) {
 function CloseCon($mysqli)
 {
     $mysqli -> close();
+}
+
+function DeleteService($idService) {
+    $conn = OpenCon();
+    $conn->query("DELETE FROM Servico WHERE id_servico=" . $idService);
+    CloseCon($conn);
+    header("Location: http://localhost:63342/htdocs/index.php");
+    exit();
 }
 
 if (isset($_GET['logout'])) {
