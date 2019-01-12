@@ -108,7 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <a class='nav-link' href='cliente.php'>Cliente</a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href=\"viatura.php\">Viatura</a>
+                            <a class='nav-link' href='viatura.php'>Viatura</a>
                         </li>
                         <li class='nav-item'>
                             <a class='nav-link' href='funcionario.php'>Funcionário</a>
@@ -160,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $conn = OpenCon();
 
             // cria a tabela de marcaçoes
-            $query = GetMarcacoesQuery($_SESSION["date"]);
+            $query = GetAppointmentsQuery($_SESSION["date"]);
 
             if ($result = $conn->query($query)) {
 

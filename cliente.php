@@ -50,12 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         i {
             padding: 0px 10px;
         }
-        .changeDate {
-            margin: 0px 10px;
-        }
-        .dateContainer {
-            margin: 40px 0px;
-        }
         .navbar {
             border-radius: 0px;
             padding-bottom: 14px;
@@ -95,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <a class='nav-link' href='cliente.php'>Cliente</a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href=\"viatura.php\">Viatura</a>
+                            <a class='nav-link' href='viatura.php'>Viatura</a>
                         </li>
                         <li class='nav-item'>
                             <a class='nav-link' href='funcionario.php'>Funcionário</a>

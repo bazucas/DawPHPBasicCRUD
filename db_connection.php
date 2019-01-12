@@ -1,5 +1,15 @@
-
 <?php
+
+if (isset($_GET['logout'])) {
+    session_start();
+
+    $helper = array_keys($_SESSION);
+    foreach ($helper as $key){
+        unset($_SESSION[$key]);
+    }
+    header(path());
+    exit();
+}
 
 function OpenCon()
 {
@@ -9,28 +19,11 @@ function OpenCon()
     $db = "cabocauto";
 
     $mysqli = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $mysqli -> error);
-
-#Exemplo para inserir elemento na BD
-//$mysqli->query("INSERT INTO `entrada` (`id`) VALUES ('18')");
-
-#Exemplo para obter valores de uma query
-//    $query = "SELECT * FROM Cliente";
-//
-//    if ($result = $mysqli->query($query)) {
-//
-//        /* fetch associative array */
-//        while ($row = $result->fetch_assoc()) {
-//            echo $row["nome"];
-//            echo "<br>";
-//        }
-//
-//        /* free result set */
-//        $result->free();
-//    }
+    
     return $mysqli;
 }
 
-function GetMarcacoesQuery($data) {
+function GetAppointmentsQuery($data) {
     $dataInicio = " " . $data . " 09:00:00";
     $dataFim = " " . $data . " 18:00:00";
 
@@ -59,8 +52,7 @@ function IsUserAuthorized($conn, $user, $pass) {
     return $user;
 }
 
-function CloseCon($mysqli)
-{
+function CloseCon($mysqli) {
     $mysqli -> close();
 }
 
@@ -68,29 +60,37 @@ function DeleteService($idService) {
     $conn = OpenCon();
     $conn->query("DELETE FROM Servico WHERE id_servico=" . $idService);
     CloseCon($conn);
-    header("Location: http://localhost:63342/htdocs/index.php");
+    header(path());
     exit();
 }
 
 function InsertNewClient($nome, $contacto, $email, $morada, $nif) {
     $conn = OpenCon();
-
     $conn->query("INSERT INTO Cliente values (0, '" . $nome . "', '" . $contacto . "', '" . $email . "', '" . $morada . "', '" . $nif . "');");
-
     CloseCon($conn);
-    header("Location: http://localhost:63342/htdocs/index.php");
+    header(path());
     exit();
 }
 
-if (isset($_GET['logout'])) {
-    session_start();
-
-    $helper = array_keys($_SESSION);
-    foreach ($helper as $key){
-        unset($_SESSION[$key]);
-    }
-    header("Location: http://localhost:63342/htdocs/index.php");
+function InsertNewVehicle($marca, $modelo, $matricula, $idCliente) {
+    $conn = OpenCon();
+    // $conn->query("INSERT INTO Viatura values (0, '99-XX-99', 'Peugeot', '5008', 1)");
+    $conn->query("INSERT INTO Viatura values (0, '" . $marca . "', '" . $modelo . "', '" . $matricula . "', '" . $idCliente . "');");
+    CloseCon($conn);
+    header(path());
     exit();
+}
+
+function InsertNewEmployee($nome, $contacto, $email, $morada, $nif) {
+    $conn = OpenCon();
+    $conn->query("INSERT INTO Cliente values (0, '" . $nome . "', '" . $contacto . "', '" . $email . "', '" . $morada . "', '" . $nif . "');");
+    CloseCon($conn);
+    header(path());
+    exit();
+}
+
+function path() {
+    return "Location: http://localhost:63342/htdocs/index.php";
 }
 
 ?>

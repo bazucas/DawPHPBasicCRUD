@@ -1,5 +1,18 @@
 <?php
 require_once('authenticate.php');
+include 'db_connection.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (!empty($_POST["nome"]) && !empty($_POST["contacto"]) && !empty($_POST["email"]) && !empty($_POST["morada"]) && !empty($_POST["nif"])) {
+        $nome = $_POST["nome"];
+        $contacto = $_POST["contacto"];
+        $email = $_POST["email"];
+        $morada = $_POST["morada"];
+        $nif = $_POST["nif"];
+
+        InsertNewClient($nome, $contacto, $email, $morada, $nif);
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -82,7 +95,7 @@ require_once('authenticate.php');
                             <a class='nav-link' href='cliente.php'>Cliente</a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href=\"viatura.php\">Viatura</a>
+                            <a class='nav-link' href='viatura.php'>Viatura</a>
                         </li>
                         <li class='nav-item'>
                             <a class='nav-link' href='funcionario.php'>Funcionário</a>
@@ -110,14 +123,33 @@ require_once('authenticate.php');
 <div class="container h-100">
     <h2 class="row h-100 justify-content-center align-items-center">Funcionários</h2>
 
-    <div class="dateContainer row h-100 justify-content-center align-items-center">
-        <input class="form-control col-md-2" type="date" name="marcacao">
-        <input class="changeDate btn btn-primary" type="button" value="Procurar">
-    </div>
-
-    <div class="row h-100 justify-content-center align-items-center">
-
-    </div>
+    <form id='cliente' method='post'>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="nome">Nome</label>
+                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="contacto">Contacto</label>
+                <input type="number" maxlength="9" minlength="9" class="form-control" id="contacto" name="contacto" placeholder="Contacto" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="morada">Morada</label>
+            <input type="text" class="form-control" id="morada" name="morada"  placeholder="Rua ..." required>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="nif">Nif</label>
+                <input type="number" maxlength="9" minlength="9" class="form-control" id="nif" name="nif" placeholder="Nif" required>
+            </div>
+        </div>
+        <button class='btn btn-outline-success my-2 my-sm-0' type = 'submit'>Adicionar Cliente</button>
+    </form>
 
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

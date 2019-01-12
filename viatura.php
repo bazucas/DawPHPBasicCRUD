@@ -1,5 +1,17 @@
 <?php
 require_once('authenticate.php');
+include 'db_connection.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (!empty($_POST["marca"]) && !empty($_POST["modelo"]) && !empty($_POST["matricula"]) && !empty($_POST["idCliente"])) {
+        $marca = $_POST["marca"];
+        $modelo = $_POST["modelo"];
+        $matricula = $_POST["matricula"];
+        $idCliente = $_POST["idCliente"];
+
+        InsertNewVehicle($marca, $modelo, $matricula, $idCliente);
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -36,12 +48,6 @@ require_once('authenticate.php');
         }
         i {
             padding: 0px 10px;
-        }
-        .changeDate {
-            margin: 0px 10px;
-        }
-        .dateContainer {
-            margin: 40px 0px;
         }
         .navbar {
             border-radius: 0px;
@@ -82,7 +88,7 @@ require_once('authenticate.php');
                             <a class='nav-link' href='cliente.php'>Cliente</a>
                         </li>
                         <li class='nav-item'>
-                            <a class='nav-link' href=\"viatura.php\">Viatura</a>
+                            <a class='nav-link' href='viatura.php'>Viatura</a>
                         </li>
                         <li class='nav-item'>
                             <a class='nav-link' href='funcionario.php'>Funcionário</a>
@@ -110,14 +116,29 @@ require_once('authenticate.php');
 <div class="container h-100">
     <h2 class="row h-100 justify-content-center align-items-center">Viaturas</h2>
 
-    <div class="dateContainer row h-100 justify-content-center align-items-center">
-        <input class="form-control col-md-2" type="date" name="marcacao">
-        <input class="changeDate btn btn-primary" type="button" value="Procurar">
-    </div>
-
-    <div class="row h-100 justify-content-center align-items-center">
-
-    </div>
+    <form id='viatura' method='post'>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="marca">Marca</label>
+                <input type="text" class="form-control" id="marca" name="marca" placeholder="Marca" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="modelo">Modelo</label>
+                <input type="text" class="form-control" id="modelo" name="modelo" placeholder="Modelo" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="matricula">Matrícula</label>
+                <input type="text" class="form-control" id="matricula" name="matricula" placeholder="Matricula" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="idCliente">IdCliente</label>
+                <input type="number" class="form-control" id="idCliente" name="idCliente" placeholder="IdCliente" required>
+            </div>
+        </div>
+        <button class='btn btn-outline-success my-2 my-sm-0' type = 'submit'>Adicionar Viatura</button>
+    </form>
 
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
