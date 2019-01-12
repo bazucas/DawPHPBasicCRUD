@@ -30,7 +30,7 @@ function OpenCon()
     return $mysqli;
 }
 
-function GetMarcacoesQuery($conn, $data) {
+function GetMarcacoesQuery($data) {
     $dataInicio = " " . $data . " 09:00:00";
     $dataFim = " " . $data . " 18:00:00";
 
@@ -67,6 +67,16 @@ function CloseCon($mysqli)
 function DeleteService($idService) {
     $conn = OpenCon();
     $conn->query("DELETE FROM Servico WHERE id_servico=" . $idService);
+    CloseCon($conn);
+    header("Location: http://localhost:63342/htdocs/index.php");
+    exit();
+}
+
+function InsertNewClient($nome, $contacto, $email, $morada, $nif) {
+    $conn = OpenCon();
+
+    $conn->query("INSERT INTO Cliente values (0, '" . $nome . "', '" . $contacto . "', '" . $email . "', '" . $morada . "', '" . $nif . "');");
+
     CloseCon($conn);
     header("Location: http://localhost:63342/htdocs/index.php");
     exit();

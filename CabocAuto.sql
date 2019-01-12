@@ -27,6 +27,7 @@ create table Cliente (
 	nome VARCHAR (50) NOT NULL,
 	contacto CHAR (9) NOT NULL,
 	email VARCHAR (30) NOT NULL,
+    morada VARCHAR (200) NOT NULL,
     nif CHAR(9)
 );
 
@@ -65,15 +66,15 @@ Insert INTO Especialidade values (0, "Pintura");
 Insert INTO Especialidade values (0, "Electrónica");
 Insert INTO Especialidade values (0, "Pneus");
 
-Insert INTO Cliente values (0, "Luís Inácio", "964486633", "luis.inacio@gmail.com", "229122066");
-Insert INTO Cliente values (0, "Renato Santos", "965895521", "renato.santos@gmail.com", "213562012");
-Insert INTO Cliente values (0, "Zé Carvalho", "964856433", "ze.carvalho@gmail.com", "232165445");
-Insert INTO Cliente values (0, "Alexandre Torres", "943286633", "alex.torres@gmail.com", "200122986");
-Insert INTO Cliente values (0, "Sara Lemos", "954326633", "sara.lemos@gmail.com", "220000066");
-Insert INTO Cliente values (0, "Tomé Grande", "912346633", "tome.grande@gmail.com", "199962066");
-Insert INTO Cliente values (0, "Mikla Bagovsky", "915486663", "mikla.bagovsky@gmail.com", "212166600");
-Insert INTO Cliente values (0, "Luis Matos", "914498983", "luis.matos@gmail.com", "232152666");
-Insert INTO Cliente values (0, "Pedro Ramos", "936566632", "pedro.ramos@gmail.com", "205555023");
+Insert INTO Cliente values (0, "Luís Inácio", "964486633", "luis.inacio@gmail.com", "Largo Simões n1 10A, 1600 Lisboa", "229122066");
+Insert INTO Cliente values (0, "Renato Santos", "965895521", "renato.santos@gmail.com", "Avenida da Liberdade 70, 1620 Lisboa", "213562012");
+Insert INTO Cliente values (0, "Zé Carvalho", "964856433", "ze.carvalho@gmail.com", "Rua das Biscoiteiras n5 1920 Lisboa", "232165445");
+Insert INTO Cliente values (0, "Alexandre Torres", "943286633", "alex.torres@gmail.com", "Rua 25 de Abril de 1974 15 9B, 2790 Carnaxide", "200122986");
+Insert INTO Cliente values (0, "Sara Lemos", "954326633", "sara.lemos@gmail.com", "Rua Rodovalho Palha 65, 9500 Santa Iria", "220000066");
+Insert INTO Cliente values (0, "Tomé Grande", "912346633", "tome.grande@gmail.com", "Rua Miguel Bombarda n30, 1900 Lisboa", "199962066");
+Insert INTO Cliente values (0, "Mikla Bagovsky", "915486663", "mikla.bagovsky@gmail.com", "Praceta Luis Santos, 5600 Porto", "212166600");
+Insert INTO Cliente values (0, "Luis Matos", "914498983", "luis.matos@gmail.com", "Rua Florbela Espanca 6 5Drt, 3500 Faro", "232152666");
+Insert INTO Cliente values (0, "Pedro Ramos", "936566632", "pedro.ramos@gmail.com", "Rua António Enes 6 6B, 2795 Linda-a-Velha", "205555023");
 
 Insert INTO Funcionario values (0, "José Roberto", 1);
 Insert INTO Funcionario values (0, "Jacobino Palha", 2);
@@ -98,7 +99,7 @@ Insert Into Servico values (0, "2019-01-10 13:00:00", 5, 5, 3);
 Insert Into Servico values (0, "2019-01-10 14:00:00", 6, 6, 5);
 Insert Into Servico values (0, "2019-01-10 15:00:00", 7, 7, 2);
 Insert Into Servico values (0, "2019-01-10 16:00:00", 8, 8, 3);
+Insert Into Servico values (0, "2019-01-11 12:00:00", 3, 3, 3);
 
 Insert Into Utilizador values (0, "user", "pass");
 Insert Into Utilizador values (0, "luis", "pass");
-

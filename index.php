@@ -1,6 +1,6 @@
 <?php
-include 'db_connection.php';
 session_start();
+include 'db_connection.php';
 $conn = OpenCon();
 $_SESSION["date"] = $_SESSION["date"] ?? "2019-01-10";
 
@@ -160,7 +160,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $conn = OpenCon();
 
             // cria a tabela de marcaçoes
-            $query = GetMarcacoesQuery($conn, $_SESSION["date"]);
+            $query = GetMarcacoesQuery($_SESSION["date"]);
 
             if ($result = $conn->query($query)) {
 
