@@ -74,7 +74,6 @@ function InsertNewClient($nome, $contacto, $email, $morada, $nif) {
 
 function InsertNewVehicle($marca, $modelo, $matricula, $idCliente) {
     $conn = OpenCon();
-    // $conn->query("INSERT INTO Viatura values (0, '99-XX-99', 'Peugeot', '5008', 1)");
     $conn->query("INSERT INTO Viatura values (0, '" . $marca . "', '" . $modelo . "', '" . $matricula . "', '" . $idCliente . "');");
     CloseCon($conn);
     header(path());
@@ -83,8 +82,15 @@ function InsertNewVehicle($marca, $modelo, $matricula, $idCliente) {
 
 function InsertNewEmployee($nome, $espec) {
     $conn = OpenCon();
-//    $conn->query("INSERT INTO Funcionario values (0, 'Robertom', 2)");
     $conn->query("INSERT INTO Funcionario values (0, '" . $nome . "', " . $espec . ")");
+    CloseCon($conn);
+    header(path());
+    exit();
+}
+
+function InsertNewIntervention($data, $cliente, $viatura, $funcionario) {
+    $conn = OpenCon();
+    $conn->query("INSERT INTO Servico values (0, " . $data . ", " . $cliente . ", " . $viatura . ", " . $funcionario . ")");
     CloseCon($conn);
     header(path());
     exit();

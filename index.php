@@ -95,9 +95,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link active" href="index.php">Marcações</a>
-            </li>
             <?php
             if (!empty($_SESSION["authenticated"]) && $_SESSION["authenticated"]) {
                 echo
@@ -153,7 +150,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <th>Matrícula</th>
                 <th>Intervenção</th>
                 <th>Técnico</th>
-                <th>Opções</th>
+                <?php
+                    if (!empty($_SESSION["authenticated"]) && $_SESSION["authenticated"]) {
+                      echo "<th>Opções</th>";
+                    }
+                ?>
             </tr>
 
             <?php
@@ -175,12 +176,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     echo "<td>" . $row["matricula"] . "</td>";
                     echo "<td>" . $row["tipo"] . "</td>";
                     echo "<td>" . $row["funcNome"] . "</td>";
-                    echo "<td>";
-                    echo "<div class='row justify-content-center align-items-center'>";
-                    echo "<a href='editar.php?" . $row["idServico"] . "'><i class='fas fa-user-edit'></i></a>";
-                    echo "<i id='delete' class='fas fa-user-times' onclick='ConfirmDelete(" . $row["idServico"] . ")'></i>";
-                    echo "</div>";
-                    echo "</td>";
+                    if (!empty($_SESSION["authenticated"]) && $_SESSION["authenticated"]) {
+                        echo "<td>";
+                        echo "<div class='row justify-content-center align-items-center'>";
+                        echo "<a href='editar.php?" . $row["idServico"] . "'><i class='fas fa-user-edit'></i></a>";
+                        echo "<i id='delete' class='fas fa-user-times' onclick='ConfirmDelete(" . $row["idServico"] . ")'></i>";
+                        echo "</div>";
+                        echo "</td>";
+                    }
                     echo "</tr>";
                 }
                 $result->free();

@@ -1,5 +1,20 @@
 <?php
 require_once('authenticate.php');
+include 'db_connection.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (!empty($_POST["dia"]) && !empty($_POST["hora"]) && !empty($_POST["cliente"]) && !empty($_POST["viatura"]) && !empty($_POST["funcionario"])) {
+        $dia = $_POST["dia"];
+        $hora = $_POST["hora"];
+        $cliente = $_POST["cliente"];
+        $viatura = $_POST["viatura"];
+        $funcionario = $_POST["funcionario"];
+
+        $data =
+
+        InsertNewIntervention($data, $cliente, $viatura, $funcionario);
+    }
+}
 ?>
 <!DOCTYPE html>
 <html>
@@ -69,9 +84,6 @@ require_once('authenticate.php');
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link active" href="index.php">Marcações</a>
-            </li>
             <?php
             if (!empty($_SESSION["authenticated"]) && $_SESSION["authenticated"]) {
                 echo
@@ -110,14 +122,42 @@ require_once('authenticate.php');
 <div class="container h-100">
     <h2 class="row h-100 justify-content-center align-items-center">Agendar Intervenção</h2>
 
-    <div class="dateContainer row h-100 justify-content-center align-items-center">
-        <input class="form-control col-md-2" type="date" name="marcacao">
-        <input class="changeDate btn btn-primary" type="button" value="Procurar">
-    </div>
-
-    <div class="row h-100 justify-content-center align-items-center">
-
-    </div>
+    <form id='viatura' method='post'>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="dia">Dia</label>
+                <input style="margin-right: 30px" class="form-control" type="date" id='dia' name='dia' required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="hora">Hora</label>
+                <select class="form-control" id="hora" name="hora">
+                    <option>09:00:00</option>
+                    <option>10:00:00</option>
+                    <option>11:00:00</option>
+                    <option>12:00:00</option>
+                    <option>13:00:00</option>
+                    <option>14:00:00</option>
+                    <option>15:00:00</option>
+                    <option>16:00:00</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="cliente">Cliente</label>
+                <input type="text" class="form-control" id="cliente" name="cliente" placeholder="Cliente" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="viatura">Viatura</label>
+                <input type="text" class="form-control" id="viatura" name="viatura" placeholder="Viatura" required>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="funcionario">Funcionario</label>
+                <input type="text" class="form-control" id="funcionario" name="funcionario" placeholder="Funcionario" required>
+            </div>
+        </div>
+        <button class='btn btn-outline-success my-2 my-sm-0' type = 'submit'>Agendar</button>
+    </form>
 
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
