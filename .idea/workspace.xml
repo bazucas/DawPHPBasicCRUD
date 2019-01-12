@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4cb1f394-e297-415c-9bfd-9d16fc30a8f2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CabocAuto.sql" beforeDir="false" afterPath="$PROJECT_DIR$/CabocAuto.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agendar.php" beforeDir="false" afterPath="$PROJECT_DIR$/agendar.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cliente.php" beforeDir="false" afterPath="$PROJECT_DIR$/cliente.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db_connection.php" beforeDir="false" afterPath="$PROJECT_DIR$/db_connection.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/funcionario.php" beforeDir="false" afterPath="$PROJECT_DIR$/funcionario.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/viatura.php" beforeDir="false" afterPath="$PROJECT_DIR$/viatura.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -53,20 +46,21 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="HTML" value="42" />
-          <entry key="PHP" value="3544" />
+          <entry key="PHP" value="3800" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="308">
-              <caret line="119" column="34" lean-forward="true" selection-start-line="119" selection-start-column="34" selection-end-line="119" selection-end-column="34" />
+            <state relative-caret-position="387">
+              <caret line="126" column="13" lean-forward="true" selection-start-line="126" selection-start-column="13" selection-end-line="126" selection-end-column="13" />
               <folding>
                 <element signature="e#145#151#0" expanded="true" />
+                <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -122,10 +116,10 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/agendar.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
+            <state relative-caret-position="638">
               <caret line="115" column="10" lean-forward="true" selection-start-line="115" selection-start-column="10" selection-end-line="115" selection-end-column="10" />
             </state>
           </provider>
@@ -162,6 +156,10 @@
       <find>$_SESSION[&quot;authenticated&quot;]</find>
       <find>IsUserAuthorized</find>
       <find>$_SESSION[&quot;authenticated&quot;]</find>
+      <find>date</find>
+      <find>date&quot;</find>
+      <find>i</find>
+      <find>username</find>
     </findStrings>
     <replaceStrings>
       <replace>&lt;td&gt;</replace>
@@ -180,11 +178,11 @@
         <option value="$PROJECT_DIR$/authenticate.php" />
         <option value="$PROJECT_DIR$/db_connection.php" />
         <option value="$PROJECT_DIR$/CabocAuto.sql" />
-        <option value="$PROJECT_DIR$/index.php" />
         <option value="$PROJECT_DIR$/cliente.php" />
         <option value="$PROJECT_DIR$/viatura.php" />
         <option value="$PROJECT_DIR$/funcionario.php" />
         <option value="$PROJECT_DIR$/agendar.php" />
+        <option value="$PROJECT_DIR$/index.php" />
       </list>
     </option>
   </component>
@@ -280,18 +278,18 @@
       <option name="presentableId" value="Default" />
       <updated>1547242270318</updated>
       <workItem from="1547242271446" duration="10013000" />
-      <workItem from="1547285904393" duration="24554000" />
+      <workItem from="1547285904393" duration="26759000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="34567000" />
+    <option name="totallyTimeSpent" value="36772000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.10660981" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.10660981" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -305,7 +303,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="PHP-CGI Server" order="10" weight="0.329718" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.14533623" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.14533623" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -408,16 +406,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="119" column="34" lean-forward="true" selection-start-line="119" selection-start-column="34" selection-end-line="119" selection-end-column="34" />
-          <folding>
-            <element signature="e#145#151#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/viatura.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="154">
@@ -434,8 +422,19 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/agendar.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
+        <state relative-caret-position="638">
           <caret line="115" column="10" lean-forward="true" selection-start-line="115" selection-start-column="10" selection-end-line="115" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="126" column="13" lean-forward="true" selection-start-line="126" selection-start-column="13" selection-end-line="126" selection-end-column="13" />
+          <folding>
+            <element signature="e#145#151#0" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#form#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

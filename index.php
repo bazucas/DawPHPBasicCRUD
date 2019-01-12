@@ -2,6 +2,7 @@
 include 'db_connection.php';
 session_start();
 $conn = OpenCon();
+$_SESSION["date"] = $_SESSION["date"] ?? "2019-01-10";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!empty($_POST["username"]) && !empty($_POST["password"])) {
@@ -14,6 +15,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION["authenticated"] = true;
             $_SESSION["user"] = $auth;
         }
+    }
+
+    if (!empty($_POST["search"])) {
+        $_SESSION["date"] = $_POST["search"];
     }
 }
 ?>
@@ -124,13 +129,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 </nav>
 <div class="container h-100">
-    <h2 class="row h-100 justify-content-center align-items-center">Marcações</h2>
+    <h2 class="row h-100 justify-content-center align-items-center">Marcações para dia <?php echo $_SESSION["date"]; ?></h2>
 
     <div class="dateContainer row h-100 justify-content-center align-items-center">
-        <input class="form-control col-md-2" type="date" name="marcacao">
-        <input class="changeDate btn btn-primary" type="button" value="Procurar">
+        <form class='form-inline my-2 my-lg-0' id='Search' method = 'post' >
+            <input id='search' name='search' style="margin-right: 30px" class="form-control"  type="date">
+            <button class='btn btn-outline-success my-2 my-sm-0' type='submit'>Procurar</button >
+        </form >
     </div>
-
     <div class="row h-100 justify-content-center align-items-center">
         <table>
             <tr>
@@ -149,14 +155,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $conn = OpenCon();
 
             // cria a tabela de marcaçoes
-            $query = GetMarcacoesQuery($conn, "2019-01-10");
+            $query = GetMarcacoesQuery($conn, $_SESSION["date"]);
 
             if ($result = $conn->query($query)) {
 
                 /* fetch associative array */
                 while ($row = $result->fetch_assoc()) {
                     echo "<tr>";
-                    echo "<th>" . $row["dataServico"] . "</th>";
+                    echo "<th>" . substr(explode(" ", $row["dataServico"])[1], 0, -3) . "</th>";
                     echo "<td>" . $row["clienteNome"] . "</td>";
                     echo "<td>" . $row["contacto"] . "</td>";
                     echo "<td>" . $row["marca"] . "</td>";
@@ -181,6 +187,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </table>
     </div>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
