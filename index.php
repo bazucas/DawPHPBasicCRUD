@@ -2,17 +2,17 @@
 include 'db_connection.php';
 session_start();
 $conn = OpenCon();
-$authenticated = null;
-// IsUserAuthorized($conn, $username, $password);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!empty($_POST["username"]) && !empty($_POST["password"])) {
         $username = $_POST["username"];
         $password = $_POST["password"];
 
-        if ($username == 'user' && $password == 'password') {
-            $_SESSION["authenticated"] = 'true';
-            $_SESSION["user"] = "Zeee";
+        $auth = IsUserAuthorized($conn, $username, $password);
+
+        if ($auth) {
+            $_SESSION["authenticated"] = true;
+            $_SESSION["user"] = $auth;
         }
     }
 }
@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             } else if (!empty($_SESSION["authenticated"]) && $_SESSION["authenticated"]) {
                 echo "</ul>
                             <div class='userWelcome'>
-                                <span>Olá " . $_SESSION["user"] . ", bem vindo(a) </span> &nbsp;
+                                <span>Olá " . ucfirst($_SESSION["user"]) . ", bem-vindo(a) </span> &nbsp;
                                 <a href='db_connection.php?logout=true'>logout</a>
                             </div>
                         ";
@@ -127,9 +127,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <h2 class="row h-100 justify-content-center align-items-center">Marcações</h2>
 
     <div class="dateContainer row h-100 justify-content-center align-items-center">
-        <input class="changeDate" type="button" value="<">
-        <input type="date" name="marcacao">
-        <input class="changeDate" type="button" value=">">
+        <input class="form-control col-md-2" type="date" name="marcacao">
+        <input class="changeDate btn btn-primary" type="button" value="Procurar">
     </div>
 
     <div class="row h-100 justify-content-center align-items-center">
@@ -150,7 +149,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $conn = OpenCon();
 
             // cria a tabela de marcaçoes
-            GetMarcacoesQuery($conn, "2019-01-10");
+            $query = GetMarcacoesQuery($conn, "2019-01-10");
+
+            if ($result = $conn->query($query)) {
+
+                /* fetch associative array */
+                while ($row = $result->fetch_assoc()) {
+                    echo "<tr>";
+                    echo "<th>" . $row["dataServico"] . "</th>";
+                    echo "<td>" . $row["clienteNome"] . "</td>";
+                    echo "<td>" . $row["contacto"] . "</td>";
+                    echo "<td>" . $row["marca"] . "</td>";
+                    echo "<td>" . $row["modelo"] . "</td>";
+                    echo "<td>" . $row["matricula"] . "</td>";
+                    echo "<td>" . $row["tipo"] . "</td>";
+                    echo "<td>" . $row["funcNome"] . "</td>";
+                    echo "<td>";
+                    echo "<div class='row justify-content-center align-items-center'>";
+                    echo "<a href='editar.php'><i class='fas fa-user-edit'></i></a>";
+                    echo "<a href='apagar.php'><i class='fas fa-user-times'></i></a>";
+                    echo "</div>";
+                    echo "</td>";
+                    echo "</tr>";
+                }
+                $result->free();
+            }
 
             CloseCon($conn);
             ?>

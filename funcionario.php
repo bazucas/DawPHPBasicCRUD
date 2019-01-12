@@ -9,10 +9,6 @@ require_once('authenticate.php');
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
           integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <link href="https://cdn.rawgit.com/atatanasov/gijgo/master/dist/combined/css/gijgo.min.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css" />
     <style>
         table {
             font-family: arial, sans-serif;
@@ -49,6 +45,7 @@ require_once('authenticate.php');
         }
         .navbar {
             border-radius: 0px;
+            padding-bottom: 14px;
         }
         .navbar-brand {
             padding: 4px 0px 0px 15px;
@@ -56,6 +53,10 @@ require_once('authenticate.php');
         .form-inline {
             float: right;
             padding: 4px 0px 0px 0px;
+        }
+        .userWelcome {
+            color: white;
+            height: 25px;
         }
     </style>
 </head>
@@ -69,40 +70,60 @@ require_once('authenticate.php');
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="index.php">Marcações</a>
+                <a class="nav-link active" href="index.php">Marcações</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="agendar.php">Intervenção</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="cliente.php">Cliente</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="viatura.php">Viatura</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="funcionario.php">Funcionário</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0" action="login.php">
-            <input class="form-control mr-sm-2" type="text" placeholder="Username">
-            <input class="form-control mr-sm-2" type="password" placeholder="Password">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
-        </form>
+            <?php
+            if (!empty($_SESSION["authenticated"]) && $_SESSION["authenticated"]) {
+                echo
+                "<li class='nav-item'>
+                            <a class='nav-link' href='agendar.php'>Intervenção</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='cliente.php'>Cliente</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href=\"viatura.php\">Viatura</a>
+                        </li>
+                        <li class='nav-item'>
+                            <a class='nav-link' href='funcionario.php'>Funcionário</a>
+                        </li>";
+            }
+
+            if (empty($_SESSION["authenticated"]) || !$_SESSION["authenticated"]) {
+                echo "</ul>
+                        <form class='form-inline my-2 my-lg-0' id = 'login' method = 'post' >
+                            <input id = 'username' name = 'username' type = 'text' required class='form-control mr-sm-2' placeholder = 'Username' >
+                            <input id = 'password' name = 'password' type = 'password' required class='form-control mr-sm-2'placeholder = 'Password' >
+                            <button class='btn btn-outline-success my-2 my-sm-0' type = 'submit'> Login</button >
+                        </form >";
+            } else if (!empty($_SESSION["authenticated"]) && $_SESSION["authenticated"]) {
+                echo "</ul>
+                            <div class='userWelcome'>
+                                <span>Olá " . ucfirst($_SESSION["user"]) . ", bem-vindo(a) </span> &nbsp;
+                                <a href='db_connection.php?logout=true'>logout</a>
+                            </div>
+                        ";
+            }
+            ?>
     </div>
 </nav>
-
 <div class="container h-100">
-    <div class="row h-100 justify-content-center align-items-center">
-        <h2>Agendar Funcionário</h2>
+    <h2 class="row h-100 justify-content-center align-items-center">Funcionários</h2>
+
+    <div class="dateContainer row h-100 justify-content-center align-items-center">
+        <input class="form-control col-md-2" type="date" name="marcacao">
+        <input class="changeDate btn btn-primary" type="button" value="Procurar">
     </div>
+
+    <div class="row h-100 justify-content-center align-items-center">
+
+    </div>
+
 </div>
-
-
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
         integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
         integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </body>
 </html>

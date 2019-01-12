@@ -11,7 +11,7 @@ use CabocAuto;
 
 -- DDL
 
-create table User (
+create table Utilizador (
 	id_user INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 	username VARCHAR (20) NOT NULL,
 	passwd VARCHAR (20) NOT NULL
@@ -32,8 +32,8 @@ create table Cliente (
 
 create table Viatura(
 	id_viatura INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	marca VARCHAR (20) NOT NULL,
     modelo VARCHAR (20) NOT NULL,
-    marca VARCHAR (20) NOT NULL,
     matricula VARCHAR (8) NOT NULL,
     id_cliente INT NOT NULL,
 	FOREIGN KEY (id_cliente) REFERENCES Cliente (id_cliente)
@@ -99,5 +99,6 @@ Insert Into Servico values (0, "2019-01-10 14:00:00", 6, 6, 5);
 Insert Into Servico values (0, "2019-01-10 15:00:00", 7, 7, 2);
 Insert Into Servico values (0, "2019-01-10 16:00:00", 8, 8, 3);
 
-Insert Into User values (0, "user", "pass");
+Insert Into Utilizador values (0, "user", "pass");
+Insert Into Utilizador values (0, "luis", "pass");
 
