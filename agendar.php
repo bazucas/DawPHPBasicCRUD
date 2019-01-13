@@ -89,7 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="dia">Dia</label>
-                <input style="margin-right: 30px" class="form-control" type="date" id='dia' name='dia' required>
+                <input class="form-control" type="date" id='dia' name='dia' required>
             </div>
             <div class="form-group col-md-4">
                 <label for="hora">Hora</label>

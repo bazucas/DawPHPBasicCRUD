@@ -3,17 +3,22 @@ require_once('authenticate.php');
 include 'server.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-//    if (!empty($_POST["dia"]) && !empty($_POST["hora"]) && !empty($_POST["cliente"]) && !empty($_POST["viatura"]) && !empty($_POST["funcionario"])) {
-//        $dia = $_POST["dia"];
-//        $hora = $_POST["hora"];
-//        $cliente = $_POST["cliente"];
-//        $viatura = $_POST["viatura"];
-//        $funcionario = $_POST["funcionario"];
-//
-//        $data =
-//
-//            InsertNewIntervention($data, $cliente, $viatura, $funcionario);
-//    }
+    if (!empty($_POST["dia"]) && !empty($_POST["hora"]) && !empty($_POST["cliente"]) && !empty($_POST["viatura"]) && !empty($_POST["funcionario"])) {
+        $dia = $_POST["dia"];
+        $hora = $_POST["hora"];
+        $cliente = $_POST["cliente"];
+        $viatura = $_POST["viatura"];
+        $funcionario = $_POST["funcionario"];
+        $email = $_POST["email"];
+
+        $data = "" . $_POST["dia"] . " " . $_POST["hora"] . ":00";
+
+        if (!empty($_POST["email"])) {
+            SendMail($email, "CabocAuto", "A intervenção na sua viatura foi remarcada para dia " . $dia . " às " . $hora . " horas. Obrigado. CabocAuto Lda.");
+        }
+
+        UpdateIntervention($data, $cliente, $viatura, $funcionario);
+    }
 
     if (!empty($_POST["logout"]) && $_POST["logout"] === "logout") {
         $logout = $_POST["logout"];
@@ -80,14 +85,61 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <div class="container h-100">
     <h2 class="row h-100 justify-content-center align-items-center">Editar Marcação</h2>
 
-    <div class="dateContainer row h-100 justify-content-center align-items-center">
-        <input class="form-control col-md-2" type="date" name="marcacao">
-        <input class="changeDate btn btn-primary" type="button" value="Procurar">
-    </div>
+    <form id='remarcar' method='post'>
 
-    <div class="row h-100 justify-content-center align-items-center">
+        <?php
 
-    </div>
+        if (isset($_GET['id'])) {
+        $conn = OpenCon();
+        // cria a tabela de servicos
+        $query = GetServices($_GET["id"]);
+        if ($result = $conn->query($query)) {
+        /* fetch associative array */
+        while ($row = $result->fetch_assoc()) {
+        ?>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="dia">Dia</label>
+                <input class="form-control" type="date" id='dia' name='dia' value="<?php echo explode(" ", $row["dataServico"])[0]; ?>" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="hora">Hora</label>
+                <?php $hora = substr(explode(" ", $row["dataServico"])[1], 0, -3); ?>
+                <select class="form-control" id="hora" name="hora">
+                    <option <?php if($hora == '09:00') echo "selected='selected'"; ?> >09:00</option>
+                    <option <?php if($hora == '10:00') echo "selected='selected'"; ?> >10:00</option>
+                    <option <?php if($hora == '11:00') echo "selected='selected'"; ?> >11:00</option>
+                    <option <?php if($hora == '12:00') echo "selected='selected'"; ?> >12:00</option>
+                    <option <?php if($hora == '13:00') echo "selected='selected'"; ?> >13:00</option>
+                    <option <?php if($hora == '14:00') echo "selected='selected'"; ?> >14:00</option>
+                    <option <?php if($hora == '15:00') echo "selected='selected'"; ?> >15:00</option>
+                    <option <?php if($hora == '16:00') echo "selected='selected'"; ?> >16:00</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="cliente">Cliente</label>
+                <input type="text" class="form-control" id="cliente" name="cliente" value="<?php echo $row['clienteNome']; ?>" required>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="viatura">Viatura</label>
+                <input type="text" class="form-control" id="viatura" name="viatura" value="<?php echo $row['matricula']; ?>" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="funcionario">Funcionario</label>
+                <input type="text" class="form-control" id="funcionario" name="funcionario" value="<?php echo $row['funcNome']; ?>" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" value="<?php echo $row['email']; ?>">
+            </div>
+        </div>
+        <button class='btn btn-outline-success my-2 my-sm-0' type = 'submit'>Remarcar</button>
+    </form>
+    <?php
+    }}}
+    ?>
 
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

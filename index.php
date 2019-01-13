@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $conn = OpenCon();
 
             // cria a tabela de marcaçoes
-            $query = GetAppointmentsQuery($_SESSION["date"]);
+            $query = GetAppointments($_SESSION["date"]);
 
             if ($result = $conn->query($query)) {
 
@@ -132,7 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     if (!empty($_SESSION["authenticated"]) && $_SESSION["authenticated"]) {
                         echo "<td>";
                         echo "<div class='row justify-content-center align-items-center'>";
-                        echo "<a href='editar.php?" . $row["idServico"] . "'><i class='fas fa-user-edit'></i></a>";
+                        echo "<a href='editar.php?id=" . $row["idServico"] . "'><i class='fas fa-user-edit'></i></a>";
                         echo "<i id='delete' class='fas fa-user-times' onclick='ConfirmDelete(" . $row["idServico"] . ")'></i>";
                         echo "</div>";
                         echo "</td>";

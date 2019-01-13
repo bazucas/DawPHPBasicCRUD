@@ -31,7 +31,7 @@ function OpenCon() {
     return $mysqli;
 }
 
-function GetAppointmentsQuery($data) {
+function GetAppointments($data) {
     $dataInicio = " " . $data . " 09:00:00";
     $dataFim = " " . $data . " 18:00:00";
 
@@ -103,6 +103,21 @@ function InsertNewIntervention($data, $cliente, $viatura, $funcionario) {
     CloseCon($conn);
     header(Path());
     exit();
+}
+
+function GetServices($id) {
+    $query = "select s.dataServico, c.nome as clienteNome, v.matricula, f.nome as funcNome, c.email
+                from Servico s
+                left join Cliente c on s.id_cliente = c.id_cliente
+                left join Viatura v on s.id_viatura = v.id_viatura
+                left join Funcionario f on s.id_funcionario = f.id_funcionario
+                where s.id_servico = " . $id . ";";
+
+    return $query;
+}
+
+function UpdateIntervention($data, $cliente, $viatura, $funcionario) {
+
 }
 
 function SendMail($to, $title, $subject) {
