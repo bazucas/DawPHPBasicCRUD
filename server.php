@@ -44,7 +44,7 @@ function GetAppointmentsQuery($data) {
                 where dataServico >= '" . $dataInicio . "' and dataServico <= '" . $dataFim . "'
                 order by s.dataServico, c.nome;";
 
-    return $query;
+   return $query;
 }
 
 function IsUserAuthorized($conn, $user, $pass) {
@@ -103,5 +103,12 @@ function InsertNewIntervention($data, $cliente, $viatura, $funcionario) {
     CloseCon($conn);
     header(Path());
     exit();
+}
+
+function SendMail($to, $title, $subject) {
+    // use wordwrap() if lines are longer than 70 characters
+    $subject = wordwrap($subject,70);
+    // send email
+    mail($to, $title, $subject);
 }
 ?>

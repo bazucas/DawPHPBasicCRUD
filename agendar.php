@@ -9,8 +9,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $cliente = $_POST["cliente"];
         $viatura = $_POST["viatura"];
         $funcionario = $_POST["funcionario"];
+        $email = $_POST["email"];
 
-        $data = "" . $_POST["dia"] . " " . $_POST["hora"] . "";
+        $data = "" . $_POST["dia"] . " " . $_POST["hora"] . ":00";
+
+        if (!empty($_POST["email"])) {
+            SendMail($email, "CabocAuto", "A intervenção na sua viatura está marcada para dia " . $dia . " às " . $hora . " horas. Obrigado. CabocAuto Lda.");
+        }
+
         InsertNewIntervention($data, $cliente, $viatura, $funcionario);
     }
 
@@ -23,7 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>CabocAuto</title>
+    <link rel="icon" type="image/png" href="images/caricon.png" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
@@ -86,14 +94,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="form-group col-md-4">
                 <label for="hora">Hora</label>
                 <select class="form-control" id="hora" name="hora">
-                    <option>09:00:00</option>
-                    <option>10:00:00</option>
-                    <option>11:00:00</option>
-                    <option>12:00:00</option>
-                    <option>13:00:00</option>
-                    <option>14:00:00</option>
-                    <option>15:00:00</option>
-                    <option>16:00:00</option>
+                    <option>09:00</option>
+                    <option>10:00</option>
+                    <option>11:00</option>
+                    <option>12:00</option>
+                    <option>13:00</option>
+                    <option>14:00</option>
+                    <option>15:00</option>
+                    <option>16:00</option>
                 </select>
             </div>
             <div class="form-group col-md-4">
@@ -102,13 +110,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
         <div class="form-row">
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <label for="viatura">Viatura</label>
                 <input type="text" class="form-control" id="viatura" name="viatura" placeholder="Viatura" required>
             </div>
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-4">
                 <label for="funcionario">Funcionario</label>
                 <input type="text" class="form-control" id="funcionario" name="funcionario" placeholder="Funcionario" required>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" id="email" name="email" placeholder="Email">
             </div>
         </div>
         <button class='btn btn-outline-success my-2 my-sm-0' type = 'submit'>Agendar</button>
