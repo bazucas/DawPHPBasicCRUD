@@ -1,6 +1,7 @@
 <?php
+include 'connvar.php';
 
-function path() {
+function Path() {
     return "Location: index.php";
 }
 
@@ -10,17 +11,22 @@ function LogOut() {
         foreach ($helper as $key){
             unset($_SESSION[$key]);
         }
-        header(path());
+        header(Path());
         exit();
 }
 
 function OpenCon() {
-    $dbhost = "";
-    $dbuser = "";
-    $dbpass = "";
-    $db = "";
+
+    $vars = Conns();
+
+    $dbhost = $vars[0];
+    $dbuser = $vars[1];
+    $dbpass = $vars[2];
+    $db = $vars[3];
 
     $mysqli = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $mysqli -> error);
+
+    $mysqli->set_charset("utf8");
 
     return $mysqli;
 }
@@ -63,7 +69,7 @@ function DeleteService($idService) {
     $conn = OpenCon();
     $conn->query("DELETE FROM Servico WHERE id_servico=" . $idService);
     CloseCon($conn);
-    header(path());
+    header(Path());
     exit();
 }
 
@@ -71,7 +77,7 @@ function InsertNewClient($nome, $contacto, $email, $morada, $nif) {
     $conn = OpenCon();
     $conn->query("INSERT INTO Cliente values (0, '" . $nome . "', '" . $contacto . "', '" . $email . "', '" . $morada . "', '" . $nif . "');");
     CloseCon($conn);
-    header(path());
+    header(Path());
     exit();
 }
 
@@ -79,7 +85,7 @@ function InsertNewVehicle($marca, $modelo, $matricula, $idCliente) {
     $conn = OpenCon();
     $conn->query("INSERT INTO Viatura values (0, '" . $marca . "', '" . $modelo . "', '" . $matricula . "', '" . $idCliente . "');");
     CloseCon($conn);
-    header(path());
+    header(Path());
     exit();
 }
 
@@ -87,16 +93,15 @@ function InsertNewEmployee($nome, $espec) {
     $conn = OpenCon();
     $conn->query("INSERT INTO Funcionario values (0, '" . $nome . "', " . $espec . ")");
     CloseCon($conn);
-    header(path());
+    header(Path());
     exit();
 }
 
 function InsertNewIntervention($data, $cliente, $viatura, $funcionario) {
     $conn = OpenCon();
-//    echo "INSERT INTO Servico values (0, '" . $data . "', " . $cliente . ", " . $viatura . ", " . $funcionario . ")";
     $conn->query("INSERT INTO Servico values (0, '" . $data . "', " . $cliente . ", " . $viatura . ", " . $funcionario . ")");
     CloseCon($conn);
-    header(path());
+    header(Path());
     exit();
 }
 ?>
