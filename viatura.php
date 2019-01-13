@@ -1,6 +1,6 @@
 <?php
 require_once('authenticate.php');
-include 'db_connection.php';
+include 'server.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (!empty($_POST["marca"]) && !empty($_POST["modelo"]) && !empty($_POST["matricula"]) && !empty($_POST["idCliente"])) {

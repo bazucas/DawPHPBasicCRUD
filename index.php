@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'db_connection.php';
+include 'server.php';
 $conn = OpenCon();
 $_SESSION["date"] = $_SESSION["date"] ?? "2019-01-10";
 

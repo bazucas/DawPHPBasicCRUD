@@ -5,7 +5,7 @@ if(empty($_SESSION["authenticated"]) || $_SESSION["authenticated"] != 'true') {
 }
 
 if (isset($_GET['id'])) {
-    include 'db_connection.php';
+    include 'server.php';
 
     DeleteService($_GET['id']);
 
