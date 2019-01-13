@@ -15,13 +15,13 @@ function LogOut() {
 }
 
 function OpenCon() {
-    $dbhost = "localhost:3306";
-    $dbuser = "dawsql";
-    $dbpass = "passwd";
-    $db = "cabocauto";
+    $dbhost = "";
+    $dbuser = "";
+    $dbpass = "";
+    $db = "";
 
     $mysqli = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $mysqli -> error);
-    
+
     return $mysqli;
 }
 
@@ -30,19 +30,20 @@ function GetAppointmentsQuery($data) {
     $dataFim = " " . $data . " 18:00:00";
 
     $query = "select s.id_servico as idServico, s.dataServico, c.nome as clienteNome, c.contacto, v.marca, v.modelo, v.matricula, e.tipo, f.nome as funcNome
-                from servico s
-                left join cliente c on s.id_cliente = c.id_cliente
-                left join viatura v on s.id_viatura = v.id_viatura
-                left join funcionario f on s.id_funcionario = f.id_funcionario
-                left join especialidade e on f.id_especialidade = e.id_especialidade
-                where dataServico >= '" . $dataInicio . "' and dataServico <= '" . $dataFim . "'";
+                from Servico s
+                left join Cliente c on s.id_cliente = c.id_cliente
+                left join Viatura v on s.id_viatura = v.id_viatura
+                left join Funcionario f on s.id_funcionario = f.id_funcionario
+                left join Especialidade e on f.id_especialidade = e.id_especialidade
+                where dataServico >= '" . $dataInicio . "' and dataServico <= '" . $dataFim . "'
+                order by s.dataServico, c.nome;";
 
     return $query;
 }
 
 function IsUserAuthorized($conn, $user, $pass) {
 
-    $query = "select * from utilizador where username = '" . $user . "' and passwd = '" . $pass . "'";
+    $query = "select * from Utilizador where username = '" . $user . "' and passwd = '" . $pass . "'";
     $user = null;
 
     if ($result = $conn->query($query)) {
@@ -92,7 +93,8 @@ function InsertNewEmployee($nome, $espec) {
 
 function InsertNewIntervention($data, $cliente, $viatura, $funcionario) {
     $conn = OpenCon();
-    $conn->query("INSERT INTO Servico values (0, " . $data . ", " . $cliente . ", " . $viatura . ", " . $funcionario . ")");
+//    echo "INSERT INTO Servico values (0, '" . $data . "', " . $cliente . ", " . $viatura . ", " . $funcionario . ")";
+    $conn->query("INSERT INTO Servico values (0, '" . $data . "', " . $cliente . ", " . $viatura . ", " . $funcionario . ")");
     CloseCon($conn);
     header(path());
     exit();

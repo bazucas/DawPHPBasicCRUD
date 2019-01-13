@@ -10,8 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $viatura = $_POST["viatura"];
         $funcionario = $_POST["funcionario"];
 
-        $data =
-
+        $data = "" . $_POST["dia"] . " " . $_POST["hora"] . "";
         InsertNewIntervention($data, $cliente, $viatura, $funcionario);
     }
 

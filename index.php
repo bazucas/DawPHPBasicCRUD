@@ -50,17 +50,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if (!empty($_SESSION["authenticated"]) && $_SESSION["authenticated"]) {
                 echo
                 "<li class='nav-item'>
-                            <a class='nav-link' href='agendar.php'>Intervenção</a>
-                        </li>
-                        <li class='nav-item'>
-                            <a class='nav-link' href='cliente.php'>Cliente</a>
-                        </li>
-                        <li class='nav-item'>
-                            <a class='nav-link' href='viatura.php'>Viatura</a>
-                        </li>
-                        <li class='nav-item'>
-                            <a class='nav-link' href='funcionario.php'>Funcionário</a>
-                        </li>";
+                    <a class='nav-link' href='agendar.php'>Intervenção</a>
+                </li>
+                <li class='nav-item'>
+                    <a class='nav-link' href='cliente.php'>Cliente</a>
+                </li>
+                <li class='nav-item'>
+                    <a class='nav-link' href='viatura.php'>Viatura</a>
+                </li>
+                <li class='nav-item'>
+                    <a class='nav-link' href='funcionario.php'>Funcionário</a>
+                </li>";
             }
 
             if (empty($_SESSION["authenticated"]) || !$_SESSION["authenticated"]) {

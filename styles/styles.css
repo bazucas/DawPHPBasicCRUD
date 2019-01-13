@@ -47,6 +47,12 @@ i {
     height: 25px;
     padding-right: 20px;
 }
+.navbar-nav {
+   padding: 10px;
+}
+.navbar-toggler {
+    margin-right: 10px;
+}
 #delete {
     color: red;
 }
