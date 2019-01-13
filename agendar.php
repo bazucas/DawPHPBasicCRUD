@@ -14,6 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         InsertNewIntervention($data, $cliente, $viatura, $funcionario);
     }
+
+    if (!empty($_POST["logout"]) && $_POST["logout"] === "logout") {
+        $logout = $_POST["logout"];
+        LogOut();
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -24,56 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css"
           integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-    <style>
-        table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-        }
-        td, th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        tr:nth-child(even) {
-            background-color: #dddddd;
-        }
-        h2 {
-            padding-top: 25px;
-            padding-left: 20px;
-            padding-right: 20px;
-            padding-bottom: 12px;
-        }
-        h4 {
-            padding: 25px 20px;
-
-        }
-        i {
-            padding: 0px 10px;
-        }
-        .changeDate {
-            margin: 0px 10px;
-        }
-        .dateContainer {
-            margin: 40px 0px;
-        }
-        .navbar {
-            border-radius: 0px;
-            padding-bottom: 14px;
-        }
-        .navbar-brand {
-            padding: 4px 0px 0px 15px;
-        }
-        .form-inline {
-            float: right;
-            padding: 4px 0px 0px 0px;
-        }
-        .userWelcome {
-            color: white;
-            height: 25px;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -110,11 +66,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </form >";
             } else if (!empty($_SESSION["authenticated"]) && $_SESSION["authenticated"]) {
                 echo "</ul>
-                            <div class='userWelcome'>
-                                <span>Olá " . ucfirst($_SESSION["user"]) . ", bem-vindo(a) </span> &nbsp;
-                                <a href='db_connection.php?logout=true'>logout</a>
-                            </div>
-                        ";
+                            <form class='form-inline my-2 my-lg-0' id = 'logout' method = 'post' >
+                            <span class='userWelcome'>Olá " . ucfirst($_SESSION["user"]) . ", bem-vindo(a) </span> &nbsp;
+                            <input type='hidden' name='logout' id='logout' value='logout' />
+                            <button class='btn btn-outline-success my-2 my-sm-0' type = 'submit'>Logout</button >
+                            </form >";
             }
             ?>
     </div>

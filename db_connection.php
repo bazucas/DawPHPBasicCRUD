@@ -1,18 +1,20 @@
 <?php
 
-if (isset($_GET['logout'])) {
-    session_start();
-
-    $helper = array_keys($_SESSION);
-    foreach ($helper as $key){
-        unset($_SESSION[$key]);
-    }
-    header(path());
-    exit();
+function path() {
+    return "Location: index.php";
 }
 
-function OpenCon()
-{
+function LogOut() {
+
+        $helper = array_keys($_SESSION);
+        foreach ($helper as $key){
+            unset($_SESSION[$key]);
+        }
+        header(path());
+        exit();
+}
+
+function OpenCon() {
     $dbhost = "localhost:3306";
     $dbuser = "dawsql";
     $dbpass = "passwd";
@@ -95,9 +97,4 @@ function InsertNewIntervention($data, $cliente, $viatura, $funcionario) {
     header(path());
     exit();
 }
-
-function path() {
-    return "Location: http://localhost:63342/htdocs/index.php";
-}
-
 ?>

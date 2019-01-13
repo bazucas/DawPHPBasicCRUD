@@ -71,8 +71,8 @@ Insert INTO Cliente values (0, "Renato Santos", "965895521", "renato.santos@gmai
 Insert INTO Cliente values (0, "Zé Carvalho", "964856433", "ze.carvalho@gmail.com", "Rua das Biscoiteiras n5 1920 Lisboa", "232165445");
 Insert INTO Cliente values (0, "Alexandre Torres", "943286633", "alex.torres@gmail.com", "Rua 25 de Abril de 1974 15 9B, 2790 Carnaxide", "200122986");
 Insert INTO Cliente values (0, "Sara Lemos", "954326633", "sara.lemos@gmail.com", "Rua Rodovalho Palha 65, 9500 Santa Iria", "220000066");
-Insert INTO Cliente values (0, "Tomé Grande", "912346633", "tome.grande@gmail.com", "Rua Miguel Bombarda n30, 1900 Lisboa", "199962066");
-Insert INTO Cliente values (0, "Mikla Bagovsky", "915486663", "mikla.bagovsky@gmail.com", "Praceta Luis Santos, 5600 Porto", "212166600");
+Insert INTO Cliente values (0, "Tomé Esperança", "912346633", "tome.grande@gmail.com", "Rua Miguel Bombarda n30, 1900 Lisboa", "199962066");
+Insert INTO Cliente values (0, "Mikla Carvalho", "915486663", "mikla.carv@gmail.com", "Praceta Luis Santos, 5600 Porto", "212166600");
 Insert INTO Cliente values (0, "Luis Matos", "914498983", "luis.matos@gmail.com", "Rua Florbela Espanca 6 5Drt, 3500 Faro", "232152666");
 Insert INTO Cliente values (0, "Pedro Ramos", "936566632", "pedro.ramos@gmail.com", "Rua António Enes 6 6B, 2795 Linda-a-Velha", "205555023");
 
@@ -80,16 +80,16 @@ Insert INTO Funcionario values (0, "José Roberto", 1);
 Insert INTO Funcionario values (0, "Jacobino Palha", 2);
 Insert INTO Funcionario values (0, "Tibúrcio Mbugua", 3);
 Insert INTO Funcionario values (0, "John Wanjiko", 4);
-Insert INTO Funcionario values (0, "Khumar Patel", 5);
+Insert INTO Funcionario values (0, "Khumar Vankat", 5);
 
 Insert Into Viatura values (0, "Renault", "Mégane", "40-IC-12", 1);
-Insert Into Viatura values (0, "Renault", "Mégane", "40-IA-69", 2);
+Insert Into Viatura values (0, "VW", "Beetle", "40-IA-69", 2);
 Insert Into Viatura values (0, "Fiat", "Uno", "OB-69-69", 3);
 Insert Into Viatura values (0, "Porsche", "911", "12-66-AA", 4);
-Insert Into Viatura values (0, "Fiat", "Model S", "88-56-BA", 5);
-Insert Into Viatura values (0, "Tesla", "Mégane", "89-89-CC", 6);
-Insert Into Viatura values (0, "Volga", "Mitra", "12-TA-22", 7);
-Insert Into Viatura values (0, "Tata", "Caril", "AA-12-21", 8);
+Insert Into Viatura values (0, "Fiat", "500", "88-56-BA", 5);
+Insert Into Viatura values (0, "Tesla", "Model S", "89-89-CC", 6);
+Insert Into Viatura values (0, "Lada", "Priora", "12-TA-22", 7);
+Insert Into Viatura values (0, "Tata", "Hexa", "AA-12-21", 8);
 
 Insert Into Servico values (0, "2019-01-10 09:00:00", 1, 1, 4);
 Insert Into Servico values (0, "2019-01-10 10:00:00", 2, 2, 2);

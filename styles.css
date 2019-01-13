@@ -1,0 +1,53 @@
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+h2 {
+    padding-top: 25px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 12px;
+}
+h4 {
+    padding: 25px 20px;
+
+}
+i {
+    padding: 0px 10px;
+}
+.dateContainer {
+    margin: 40px 0px;
+}
+.navbar {
+    border-radius: 0px;
+    padding-bottom: 14px;
+}
+.navbar-brand {
+    padding: 4px 0px 0px 15px;
+}
+.form-inline {
+    float: right;
+    padding: 4px 0px 0px 0px;
+}
+.userWelcome {
+    color: white;
+    height: 25px;
+    padding-right: 20px;
+}
+#delete {
+    color: red;
+}
+#delete:hover {
+    cursor: pointer;
+    color: #660300;
+}
