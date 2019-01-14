@@ -151,8 +151,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <script type="text/javascript">
     function ConfirmDelete(id)
     {
-        if (confirm("Eliminar o serviço?"))
-            location.href='http://localhost:63342/htdocs/apagar.php?id=' + id;
+        if (confirm("Eliminar o serviço?")){
+            location.href='/apagar.php?id=' + id;
+        }
     }
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
