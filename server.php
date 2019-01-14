@@ -127,6 +127,28 @@ function UpdateIntervention($idServico, $data, $idCliente, $idViatura, $idFuncio
     exit();
 }
 
+function GetList($list) {
+
+    switch ($list) {
+        case "Cliente":
+            $query = "select id_cliente as chave, nome as valor from Cliente";
+        break;
+        case "Viatura":
+            $query = "select id_viatura as chave, matricula as valor from Viatura";
+        break;
+        case "Funcionário":
+            $query = "select id_funcionario as chave, nome as valor from Funcionario";
+        break;
+        case "Especialidade":
+            $query = "select id_especialidade as chave, tipo as valor from Especialidade";
+            break;
+        default:
+            $query = "select id_cliente as chave, nome as valor from Cliente";
+    }
+
+    return $query;
+}
+
 function SendMail($to, $title, $subject) {
     // TODO: uncomment in prod
 //    $subject = wordwrap($subject,70);

@@ -3,14 +3,9 @@ require_once('authenticate.php');
 include 'server.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (!empty($_POST["nome"]) && !empty($_POST["contacto"]) && !empty($_POST["email"]) && !empty($_POST["morada"]) && !empty($_POST["nif"])) {
-        $nome = $_POST["nome"];
-        $contacto = $_POST["contacto"];
-        $email = $_POST["email"];
-        $morada = $_POST["morada"];
-        $nif = $_POST["nif"];
-
-        InsertNewClient($nome, $contacto, $email, $morada, $nif);
+    if (!empty($_POST["listarPor"])) {
+        $listarPor = $_POST["listarPor"];
+        header("Location: listar.php?lista=" . $listarPor);
     }
 
     if (!empty($_POST["logout"]) && $_POST["logout"] === "logout") {
@@ -79,35 +74,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </div>
 </nav>
 <div class="container h-100">
-    <h2 class="row h-100 justify-content-center align-items-center">Clientes</h2>
+    <h2 class="row h-100 justify-content-center align-items-center">Listar</h2>
 
-    <form id='cliente' method='post'>
+    <form id='listar' method='post'>
         <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="nome">Nome</label>
-                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome" required>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="contacto">Contacto</label>
-                <input type="number" maxlength="9" minlength="9" class="form-control" id="contacto" name="contacto" placeholder="Contacto" required>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="morada">Morada</label>
-            <input type="text" class="form-control" id="morada" name="morada"  placeholder="Rua ..." required>
-        </div>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="nif">Nif</label>
-                <input type="number" maxlength="9" minlength="9" class="form-control" id="nif" name="nif" placeholder="Nif" required>
+            <div class="form-group col-md-2">
+                <label for="listarPor">Listar por:</label>
+                <select class="form-control" id="listarPor" name="listarPor">
+                    <option selected="selected">Cliente</option>
+                    <option>Viatura</option>
+                    <option>Funcionário</option>
+                    <option>Especialidade</option>
+                </select>
             </div>
         </div>
-        <button class='btn btn-outline-success my-2 my-sm-0' type = 'submit'>Adicionar Cliente</button>
+        <button class='btn btn-outline-success my-2 my-sm-0' type = 'submit'>Listar</button>
     </form>
+
+    <div class="form-row" style="margin-top: 40px">
+    <?php
+    if (isset($_GET['lista'])) {
+        $conn = OpenCon();
+
+        $query = GetList($_GET["lista"]);
+
+        if ($result = $conn->query($query)) {
+            echo "<ul>";
+            while ($row = $result->fetch_assoc()) {
+                echo "<li style='list-style-type: none;'>" . $row["chave"]  . " &nbsp " . $row["valor"] . "</li>";
+            }
+            $result->free();
+        }
+        echo "</ul>";
+        CloseCon($conn);
+    }
+    ?>
+    </div>
 
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
