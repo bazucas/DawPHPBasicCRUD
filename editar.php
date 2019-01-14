@@ -3,7 +3,7 @@ require_once('authenticate.php');
 include 'server.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    if (!empty($_POST["dia"]) && !empty($_POST["hora"]) && !empty($_POST["cliente"]) && !empty($_POST["viatura"]) && !empty($_POST["funcionario"])) {
+    if (isset($_GET['id']) && !empty($_POST["dia"]) && !empty($_POST["hora"]) && !empty($_POST["cliente"]) && !empty($_POST["viatura"]) && !empty($_POST["funcionario"])) {
         $dia = $_POST["dia"];
         $hora = $_POST["hora"];
         $cliente = $_POST["cliente"];
@@ -14,10 +14,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $data = "" . $_POST["dia"] . " " . $_POST["hora"] . ":00";
 
         if (!empty($_POST["email"])) {
-            SendMail($email, "CabocAuto", "A intervenção na sua viatura foi remarcada para dia " . $dia . " às " . $hora . " horas. Obrigado. CabocAuto Lda.");
+            // TODO: uncomment in prod
+            // SendMail($email, "CabocAuto", "A intervenção na sua viatura foi remarcada para dia " . $dia . " às " . $hora . " horas. Obrigado. CabocAuto Lda.");
         }
 
-        UpdateIntervention($data, $cliente, $viatura, $funcionario);
+         UpdateIntervention($_GET['id'], $data, $cliente, $viatura, $funcionario);
     }
 
     if (!empty($_POST["logout"]) && $_POST["logout"] === "logout") {

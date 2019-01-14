@@ -106,12 +106,6 @@ function InsertNewIntervention($data, $cliente, $viatura, $funcionario) {
 }
 
 function GetServices($id) {
-//    $query = "select s.dataServico, c.nome as clienteNome, v.matricula, f.nome as funcNome, c.email
-//                from Servico s
-//                left join Cliente c on s.id_cliente = c.id_cliente
-//                left join Viatura v on s.id_viatura = v.id_viatura
-//                left join Funcionario f on s.id_funcionario = f.id_funcionario
-//                where s.id_servico = " . $id . ";";
 
     $query = "select s.dataServico, c.id_cliente as idCliente, v.id_viatura as idViatura, f.id_funcionario as idFunc, c.email
                 from Servico s
@@ -122,14 +116,20 @@ function GetServices($id) {
     return $query;
 }
 
-function UpdateIntervention($data, $cliente, $viatura, $funcionario) {
+function UpdateIntervention($idServico, $data, $idCliente, $idViatura, $idFuncionario) {
+    $conn = OpenCon();
+    $query = "UPDATE Servico SET dataServico = '" . $data . "', id_cliente = " . $idCliente . ", id_viatura = " . $idViatura . ", id_funcionario= " . $idFuncionario . "
+                WHERE id_servico = " . $idServico . ";";
 
+    $conn->query($query);
+    CloseCon($conn);
+    header(Path());
+    exit();
 }
 
 function SendMail($to, $title, $subject) {
-    // use wordwrap() if lines are longer than 70 characters
-    $subject = wordwrap($subject,70);
-    // send email
-    mail($to, $title, $subject);
+    // TODO: uncomment in prod
+//    $subject = wordwrap($subject,70);
+//    mail($to, $title, $subject);
 }
 ?>
