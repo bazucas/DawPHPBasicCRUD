@@ -118,17 +118,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="form-group col-md-4">
                 <label for="cliente">Cliente</label>
-                <input type="text" class="form-control" id="cliente" name="cliente" value="<?php echo $row['clienteNome']; ?>" required>
+                <input type="text" class="form-control" id="cliente" name="cliente" value="<?php echo $row['idCliente']; ?>" required>
             </div>
         </div>
         <div class="form-row">
             <div class="form-group col-md-4">
                 <label for="viatura">Viatura</label>
-                <input type="text" class="form-control" id="viatura" name="viatura" value="<?php echo $row['matricula']; ?>" required>
+                <input type="text" class="form-control" id="viatura" name="viatura" value="<?php echo $row['idViatura']; ?>" required>
             </div>
             <div class="form-group col-md-4">
                 <label for="funcionario">Funcionario</label>
-                <input type="text" class="form-control" id="funcionario" name="funcionario" value="<?php echo $row['funcNome']; ?>" required>
+                <input type="text" class="form-control" id="funcionario" name="funcionario" value="<?php echo $row['idFunc']; ?>" required>
             </div>
             <div class="form-group col-md-4">
                 <label for="email">Email</label>

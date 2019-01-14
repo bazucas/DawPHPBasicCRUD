@@ -106,13 +106,19 @@ function InsertNewIntervention($data, $cliente, $viatura, $funcionario) {
 }
 
 function GetServices($id) {
-    $query = "select s.dataServico, c.nome as clienteNome, v.matricula, f.nome as funcNome, c.email
+//    $query = "select s.dataServico, c.nome as clienteNome, v.matricula, f.nome as funcNome, c.email
+//                from Servico s
+//                left join Cliente c on s.id_cliente = c.id_cliente
+//                left join Viatura v on s.id_viatura = v.id_viatura
+//                left join Funcionario f on s.id_funcionario = f.id_funcionario
+//                where s.id_servico = " . $id . ";";
+
+    $query = "select s.dataServico, c.id_cliente as idCliente, v.id_viatura as idViatura, f.id_funcionario as idFunc, c.email
                 from Servico s
                 left join Cliente c on s.id_cliente = c.id_cliente
                 left join Viatura v on s.id_viatura = v.id_viatura
                 left join Funcionario f on s.id_funcionario = f.id_funcionario
                 where s.id_servico = " . $id . ";";
-
     return $query;
 }
 
