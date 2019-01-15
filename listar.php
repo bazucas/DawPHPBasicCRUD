@@ -83,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <select class="form-control" id="listarPor" name="listarPor">
                     <option selected="selected">Cliente</option>
                     <option>Viatura</option>
-                    <option>Funcionário</option>
+                    <option value="Func">Funcionário</option>
                     <option>Especialidade</option>
                 </select>
             </div>

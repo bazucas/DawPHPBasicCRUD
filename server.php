@@ -136,7 +136,7 @@ function GetList($list) {
         case "Viatura":
             $query = "select id_viatura as chave, matricula as valor from Viatura";
         break;
-        case "Funcionário":
+        case "Func":
             $query = "select id_funcionario as chave, nome as valor from Funcionario";
         break;
         case "Especialidade":
